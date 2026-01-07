@@ -4,10 +4,20 @@
 
 If you have any issues or suggestions, feel free to PR, create an issue or join my discord: https://discord.gg/FzPehMQaBQ
 
+## Preview
+<img width="1920" height="1080" alt="FiveM_GTAProcess_6C1HAisT6o" src="https://github.com/user-attachments/assets/46561d25-7998-4134-ad11-4d33a22a0674" />
+
+<img width="1920" height="1080" alt="FiveM_GTAProcess_VhzFiz3DF4" src="https://github.com/user-attachments/assets/eb7a1120-3220-474b-bbc7-981bc9e5694c" />
+
+![FiveM_GTAProcess_bBgveoHGWF](https://github.com/user-attachments/assets/c8689320-92ba-4bfa-aa1a-c1eed1f5b44e)
+
 ## Works Great With
 
-**sd-crafting** (Source): https://fivem.samueldev.shop/product/7203651
-**sd-crafting** (Encrypted): https://fivem.samueldev.shop/product/7203650
+Advanced Crafting (Source): https://fivem.samueldev.shop/product/7203651
+
+Advanced Crafting (Encrypted): https://fivem.samueldev.shop/product/7203650
+
+Preview for Crafting: https://www.youtube.com/watch?v=X7yAq5xOlm0&t=46s
 
 ## What's Different
 
@@ -22,7 +32,7 @@ If you have any issues or suggestions, feel free to PR, create an issue or join 
 - **Modern tooltips** - Redesigned item tooltips with better formatting
 - **Item notifications** - Styled popup notifications for item actions (use, give, receive)
 
-# original ox_inventory
+# Original ox_inventory
 
 A complete inventory system for FiveM, implementing items, weapons, shops, and more without any strict framework dependency.
 
