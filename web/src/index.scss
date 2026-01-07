@@ -1,3 +1,5 @@
+@use "sass:math";
+
 $mainColor: rgba(12, 12, 14, 0.75);
 $textColor: #ffffff;
 $textColorSecondary: rgba(255, 255, 255, 0.7);
@@ -17,10 +19,16 @@ $secondaryColorHighlight: rgba(42, 42, 48, 0.6);
 $secondaryColorLight: rgba(255, 255, 255, 0.05);
 $secondaryColorDark: rgba(18, 18, 22, 0.9);
 
+@function vp($px) {
+  $vw-component: calc(#{math.div($px, 1920) * 100}vw);
+  $vh-component: calc(#{math.div($px, 1080) * 100}vh);
+  @return calc((#{$vw-component} + #{$vh-component}) / 2);
+}
+
 $gridCols: 5;
 $gridRows: 5;
-$gridSize: 80px;
-$gridGap: 8px;
+$gridSize: vp(80);
+$gridGap: vp(8);
 
 body {
   margin: 0;
@@ -43,17 +51,17 @@ code {
 }
 
 ::-webkit-scrollbar {
-  width: 4px;
+  width: vp(4);
 }
 
 ::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.05);
-  border-radius: 4px;
+  border-radius: vp(4);
 }
 
 ::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.25);
-  border-radius: 4px;
+  border-radius: vp(4);
   transition: background 0.2s ease;
 }
 
@@ -86,21 +94,21 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .context-menu-list {
-  min-width: 200px;
+  min-width: vp(200);
   background-color: rgba(12, 12, 14, 0.95);
   color: $textColor;
-  padding: 4px;
-  border: 1px solid $borderColor;
-  border-radius: 8px;
+  padding: vp(4);
+  border: vp(1) solid $borderColor;
+  border-radius: vp(8);
   outline: none;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 1px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 vp(10) vp(40) rgba(0, 0, 0, 0.5), 0 0 vp(1) rgba(255, 255, 255, 0.1);
 }
 
 .context-menu-item {
-  padding: 8px 12px;
-  border-radius: 6px;
+  padding: vp(8) vp(12);
+  border-radius: vp(6);
   background-color: transparent;
   outline: none;
   border: none;
@@ -119,7 +127,7 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .tooltip-description {
-  padding-top: 5px;
+  padding-top: vp(5);
 }
 
 .tooltip-markdown > p {
@@ -127,12 +135,12 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 button:active {
-  transform: translateY(2px);
+  transform: translateY(vp(2));
 }
 
 .item-drag-preview {
-  width: 80px;
-  height: 80px;
+  width: vp(80);
+  height: vp(80);
   z-index: 1000;
   position: fixed;
   pointer-events: none;
@@ -140,7 +148,7 @@ button:active {
   left: 0;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 60px;
+  background-size: vp(60);
   image-rendering: -webkit-optimize-contrast;
   opacity: 0.9;
   transform: scale(1.1);
@@ -153,18 +161,18 @@ button:active {
   align-items: flex-start;
   height: 100%;
   width: 100%;
-  padding: 32px;
-  perspective: 1200px;
+  padding: vp(32);
+  perspective: vp(1200);
   background-color: rgba(0, 0, 0, 0.5);
 }
 
 .left-panel-container {
-  width: 520px;
-  height: calc(100vh - 64px);
-  max-height: calc(100vh - 64px);
+  width: vp(520);
+  height: calc(100vh - #{vp(64)});
+  max-height: calc(100vh - #{vp(64)});
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: vp(12);
   transform: rotateY(4deg);
   transform-origin: left center;
   transform-style: preserve-3d;
@@ -178,15 +186,15 @@ button:active {
   .inventory-control-wrapper {
     display: flex;
     flex-direction: row;
-    gap: 6px;
+    gap: vp(6);
     justify-content: center;
     align-items: center;
-    padding: 10px 16px;
+    padding: vp(10) vp(16);
     width: 100%;
     background: $mainColor;
-    border: 1px solid $borderColorHover;
-    border-radius: 12px;
-    box-shadow: 10px 0 40px rgba(0, 0, 0, 0.5);
+    border: vp(1) solid $borderColorHover;
+    border-radius: vp(12);
+    box-shadow: vp(10) 0 vp(40) rgba(0, 0, 0, 0.5);
     position: relative;
 
     &::before {
@@ -195,10 +203,10 @@ button:active {
       inset: 0;
       pointer-events: none;
       z-index: 0;
-      border-radius: 12px;
+      border-radius: vp(12);
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
       background-repeat: repeat;
-      background-size: 128px 128px;
+      background-size: vp(128) vp(128);
       opacity: 0.08;
     }
   }
@@ -207,22 +215,22 @@ button:active {
     display: flex;
     align-items: stretch;
     flex-shrink: 0;
-    margin-right: 4px;
+    margin-right: vp(4);
   }
 
   .inventory-control-input {
     transition: all 0.2s ease;
-    padding: 6px 8px;
-    border-radius: 4px 0 0 4px;
+    padding: vp(6) vp(8);
+    border-radius: vp(4) 0 0 vp(4);
     font-family: $mainFont;
-    font-size: 11px;
+    font-size: vp(11);
     text-align: center;
     outline: none;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: vp(1) solid rgba(255, 255, 255, 0.1);
     border-right: none;
     color: #fff;
     background-color: rgba(0, 0, 0, 0.3);
-    width: 42px;
+    width: vp(42);
     appearance: textfield;
     -moz-appearance: textfield;
 
@@ -245,9 +253,9 @@ button:active {
   .inventory-control-arrows {
     display: flex;
     flex-direction: column;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: vp(1) solid rgba(255, 255, 255, 0.1);
     border-left: none;
-    border-radius: 0 4px 4px 0;
+    border-radius: 0 vp(4) vp(4) 0;
     overflow: hidden;
   }
 
@@ -255,7 +263,7 @@ button:active {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 5px;
+    padding: 0 vp(5);
     background-color: rgba(0, 0, 0, 0.3);
     color: rgba(255, 255, 255, 0.4);
     border: none;
@@ -264,8 +272,8 @@ button:active {
     flex: 1;
 
     svg {
-      width: 8px;
-      height: 8px;
+      width: vp(8);
+      height: vp(8);
     }
 
     &:hover {
@@ -274,22 +282,22 @@ button:active {
     }
 
     &.arrow-down {
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-top: vp(1) solid rgba(255, 255, 255, 0.08);
     }
   }
 
   .inventory-control-button {
-    font-size: 10px;
+    font-size: vp(10);
     color: rgba(255, 255, 255, 0.7);
     background-color: rgba(255, 255, 255, 0.05);
     transition: all 0.2s ease;
-    padding: 7px 14px;
-    border-radius: 4px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: vp(7) vp(14);
+    border-radius: vp(4);
+    border: vp(1) solid rgba(255, 255, 255, 0.08);
     text-transform: uppercase;
     font-family: $mainFont;
     font-weight: 600;
-    letter-spacing: 0.5px;
+    letter-spacing: vp(0.5);
     flex: 1;
     min-width: 0;
     white-space: nowrap;
@@ -356,16 +364,16 @@ button:active {
   left: 50%;
   transform: translate(-50%, -50%);
   color: $textColor;
-  width: 420px;
+  width: vp(420);
   display: flex;
   flex-direction: column;
-  padding: 24px;
-  border-radius: 16px;
-  gap: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: vp(24);
+  border-radius: vp(16);
+  gap: vp(20);
+  border: vp(1) solid rgba(255, 255, 255, 0.1);
   box-shadow:
-    0 25px 50px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+    0 vp(25) vp(50) rgba(0, 0, 0, 0.5),
+    0 0 0 vp(1) rgba(255, 255, 255, 0.05) inset;
 }
 
 .useful-controls-dialog-title {
@@ -373,37 +381,37 @@ button:active {
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  font-size: 18px;
+  font-size: vp(18);
   font-weight: 600;
   color: $textColor;
-  padding-bottom: 16px;
-  border-bottom: 1px solid $borderColor;
-  margin-bottom: 4px;
+  padding-bottom: vp(16);
+  border-bottom: vp(1) solid $borderColor;
+  margin-bottom: vp(4);
 
   p {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: vp(10);
 
     &::before {
       content: '';
       display: inline-block;
-      width: 4px;
-      height: 18px;
+      width: vp(4);
+      height: vp(18);
       background: $accentColor;
-      border-radius: 2px;
+      border-radius: vp(2);
     }
   }
 }
 
 .useful-controls-dialog-close {
-  width: 32px;
-  height: 32px;
-  padding: 8px;
+  width: vp(32);
+  height: vp(32);
+  padding: vp(8);
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 8px;
+  border-radius: vp(8);
   fill: $textColorMuted;
   transition: all 0.2s ease;
   background: rgba(255, 255, 255, 0.05);
@@ -418,17 +426,17 @@ button:active {
 .useful-controls-content-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: vp(12);
 
   p {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    padding: 12px 14px;
+    gap: vp(6);
+    padding: vp(12) vp(14);
     background: rgba(255, 255, 255, 0.03);
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    font-size: 13px;
+    border-radius: vp(10);
+    border: vp(1) solid rgba(255, 255, 255, 0.05);
+    font-size: vp(13);
     color: $textColorSecondary;
     line-height: 1.5;
     transition: all 0.2s ease;
@@ -442,41 +450,41 @@ button:active {
   kbd {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: vp(6);
     font-family: $mainFont;
-    font-size: 12px;
+    font-size: vp(12);
     font-weight: 600;
     color: $accentColor;
-    letter-spacing: 0.3px;
+    letter-spacing: vp(0.3);
   }
 }
 
 .divider {
   width: 100%;
-  height: 1px;
+  height: vp(1);
   background-color: $borderColor;
 }
 
 .useful-controls-button {
   position: fixed !important;
-  bottom: 32px;
-  right: 32px;
+  bottom: vp(32);
+  right: vp(32);
   transition: all 0.2s ease !important;
-  border: 1px solid $borderColor !important;
+  border: vp(1) solid $borderColor !important;
   color: white;
-  width: 44px;
-  height: 44px;
+  width: vp(44);
+  height: vp(44);
   display: flex;
   justify-content: center;
   align-items: center;
   fill: $textColorMuted;
-  border-radius: 12px !important;
+  border-radius: vp(12) !important;
   background-color: rgba(12, 12, 14, 0.95) !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 vp(4) vp(20) rgba(0, 0, 0, 0.3);
 
   svg {
-    width: 18px;
-    height: 18px;
+    width: vp(18);
+    height: vp(18);
     transition: fill 0.2s ease;
   }
 
@@ -484,17 +492,17 @@ button:active {
     background-color: $slotBackgroundHover !important;
     border-color: $accentColor !important;
     cursor: pointer;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+    transform: translateY(vp(-2));
+    box-shadow: 0 vp(6) vp(24) rgba(0, 0, 0, 0.4);
     fill: $accentColor;
   }
 }
 
 .useful-controls-exit-button {
   position: absolute !important;
-  right: 8px;
-  top: 8px;
-  border-radius: 6px !important;
+  right: vp(8);
+  top: vp(8);
+  border-radius: vp(6) !important;
   color: $textColorMuted !important;
 }
 
@@ -503,12 +511,12 @@ button:active {
   flex-direction: column;
   flex: 1 1 0;
   min-height: 0;
-  max-height: calc((100vh - 64px - 24px - 50px) / 2);
+  max-height: calc((100vh - #{vp(64)} - #{vp(24)} - #{vp(50)}) / 2);
   background: $mainColor;
-  border: 1px solid $borderColorHover;
-  border-radius: 12px;
+  border: vp(1) solid $borderColorHover;
+  border-radius: vp(12);
   overflow: hidden;
-  box-shadow: 10px 0 40px rgba(0, 0, 0, 0.5);
+  box-shadow: vp(10) 0 vp(40) rgba(0, 0, 0, 0.5);
   position: relative;
 
   &::before {
@@ -517,10 +525,10 @@ button:active {
     inset: 0;
     pointer-events: none;
     z-index: 10;
-    border-radius: 12px;
+    border-radius: vp(12);
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
     background-repeat: repeat;
-    background-size: 128px 128px;
+    background-size: vp(128) vp(128);
     opacity: 0.08;
   }
 }
@@ -530,10 +538,10 @@ button:active {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 16px 8px 16px;
+  padding: vp(16) vp(16) vp(8) vp(16);
   flex-shrink: 0;
   p {
-    font-size: 14px;
+    font-size: vp(14);
     font-weight: 600;
     color: $textColor;
   }
@@ -542,7 +550,7 @@ button:active {
 .inventory-weight-display {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: vp(6);
   color: $textColorMuted;
   transition: color 0.2s ease;
 
@@ -553,9 +561,9 @@ button:active {
   }
 
   span {
-    font-size: 11px;
+    font-size: vp(11);
     font-weight: 500;
-    letter-spacing: 0.2px;
+    letter-spacing: vp(0.2);
   }
 
   &.weight-warning {
@@ -576,8 +584,8 @@ button:active {
 }
 
 .inventory-search-wrapper {
-  padding: 0 16px 12px 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0 vp(16) vp(12) vp(16);
+  border-bottom: vp(1) solid rgba(255, 255, 255, 0.1);
   flex-shrink: 0;
 }
 
@@ -591,13 +599,13 @@ button:active {
   width: 100%;
   box-sizing: border-box;
   background-color: #1a1a1f;
-  border-radius: 8px;
-  padding: 8px 40px 8px 16px;
+  border-radius: vp(8);
+  padding: vp(8) vp(40) vp(8) vp(16);
   color: $textColor;
-  font-size: 12px;
-  line-height: 16px;
+  font-size: vp(12);
+  line-height: vp(16);
   font-family: $mainFont;
-  border: 1px solid transparent;
+  border: vp(1) solid transparent;
   outline: none;
 
   &::placeholder {
@@ -612,7 +620,7 @@ button:active {
 
 .inventory-search-icon {
   position: absolute;
-  right: 12px;
+  right: vp(12);
   top: 50%;
   transform: translateY(-50%);
   color: rgba(107, 114, 128, 1);
@@ -624,13 +632,13 @@ button:active {
 
 .inventory-search-clear {
   position: absolute;
-  right: 12px;
+  right: vp(12);
   top: 50%;
   transform: translateY(-50%);
   background: transparent;
   border: none;
-  padding: 2px;
-  border-radius: 4px;
+  padding: vp(2);
+  border-radius: vp(4);
   color: rgba(156, 163, 175, 1);
   cursor: pointer;
   display: flex;
@@ -656,22 +664,22 @@ button:active {
   grid-auto-rows: $gridSize;
   gap: $gridGap;
   overflow-y: auto;
-  padding: 12px;
+  padding: vp(12);
   flex: 1;
   min-height: 0;
 }
 
 .inventory-slot {
   background-color: $slotBackground;
-  border-radius: 8px;
+  border-radius: vp(8);
   position: relative;
   color: $textColor;
-  border: 1px solid $borderColor;
+  border: vp(1) solid $borderColor;
   transition: all 0.2s ease;
   cursor: default;
   overflow: hidden;
   height: 100%;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 vp(1) 0 rgba(255, 255, 255, 0.05);
 
   &:hover {
     background-color: $slotBackgroundHover;
@@ -684,7 +692,7 @@ button:active {
 
 .inventory-slot-empty {
   background-color: $slotBackgroundEmpty;
-  border: 1px dashed rgba(255, 255, 255, 0.08);
+  border: vp(1) dashed rgba(255, 255, 255, 0.08);
   box-shadow: none;
 
   &:hover {
@@ -706,9 +714,9 @@ button:active {
 }
 
 .empty-slot-icon-bg {
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
+  width: vp(32);
+  height: vp(32);
+  border-radius: vp(6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -717,8 +725,8 @@ button:active {
 }
 
 .empty-slot-icon {
-  width: 16px;
-  height: 16px;
+  width: vp(16);
+  height: vp(16);
   color: rgba(255, 255, 255, 0.1);
   transition: all 0.2s ease;
 }
@@ -739,25 +747,25 @@ button:active {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 8px;
+  padding: vp(8);
 }
 
 .inventory-slot-noise {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  border-radius: 8px;
+  border-radius: vp(8);
   overflow: hidden;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 128 128' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-repeat: repeat;
-  background-size: 64px 64px;
+  background-size: vp(64) vp(64);
   opacity: 0.06;
   mix-blend-mode: overlay;
 }
 
 .inventory-slot-image {
-  width: 40px;
-  height: 40px;
+  width: vp(40);
+  height: vp(40);
   object-fit: contain;
   pointer-events: none;
   image-rendering: -webkit-optimize-contrast;
@@ -767,31 +775,31 @@ button:active {
 
 .inventory-slot-count {
   position: absolute;
-  top: 4px;
-  right: 4px;
-  min-width: 18px;
-  height: 18px;
+  top: vp(4);
+  right: vp(4);
+  min-width: vp(18);
+  height: vp(18);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 4px;
+  padding: 0 vp(4);
   background: rgba(0, 0, 0, 0.5);
   color: white;
-  font-size: 10px;
+  font-size: vp(10);
   font-weight: 700;
-  border-radius: 4px;
+  border-radius: vp(4);
   z-index: 10;
 }
 
 .inventory-slot-label {
   position: relative;
   color: rgba(209, 213, 219, 1);
-  font-size: 9px;
+  font-size: vp(9);
   font-weight: 400;
   text-align: center;
   line-height: 1.2;
-  margin-top: 4px;
-  padding: 0 4px;
+  margin-top: vp(4);
+  padding: 0 vp(4);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -801,48 +809,48 @@ button:active {
 
 .inventory-slot-durability {
   position: absolute;
-  bottom: 4px;
-  left: 4px;
-  right: 4px;
+  bottom: vp(4);
+  left: vp(4);
+  right: vp(4);
   z-index: 10;
 }
 
 .inventory-slot-price {
   position: absolute;
-  top: 4px;
-  left: 4px;
+  top: vp(4);
+  left: vp(4);
   display: flex;
   align-items: center;
-  gap: 3px;
-  padding: 3px 6px;
+  gap: vp(3);
+  padding: vp(3) vp(6);
   background: rgba(0, 0, 0, 0.6);
-  border-radius: 4px;
-  font-size: 10px;
+  border-radius: vp(4);
+  font-size: vp(10);
   font-weight: 700;
   z-index: 15;
-  border: 1px solid rgba(74, 222, 128, 0.3);
+  border: vp(1) solid rgba(74, 222, 128, 0.3);
 }
 
 .inventory-slot-currency-icon {
-  width: 12px;
-  height: 12px;
+  width: vp(12);
+  height: vp(12);
   object-fit: contain;
 }
 
 .inventory-slot-number {
   position: absolute;
-  top: 4px;
-  left: 4px;
-  min-width: 18px;
-  height: 18px;
+  top: vp(4);
+  left: vp(4);
+  min-width: vp(18);
+  height: vp(18);
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: $accentColor;
   color: rgba(0, 0, 0, 0.9);
-  font-size: 10px;
+  font-size: vp(10);
   font-weight: 700;
-  border-radius: 4px;
+  border-radius: vp(4);
   z-index: 10;
 }
 
@@ -865,11 +873,11 @@ button:active {
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  padding-right: 4px;
+  padding-right: vp(4);
   p {
-    font-size: 12px;
+    font-size: vp(12);
     font-weight: 600;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 vp(1) vp(3) rgba(0, 0, 0, 0.5);
     color: $accentColor;
   }
 }
@@ -878,11 +886,11 @@ button:active {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  padding-right: 4px;
+  padding-right: vp(4);
   p {
-    font-size: 12px;
+    font-size: vp(12);
     font-weight: 600;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 vp(1) vp(3) rgba(0, 0, 0, 0.5);
     color: $accentColor;
   }
 }
@@ -891,17 +899,17 @@ button:active {
   pointer-events: none;
   display: flex;
   background-color: rgba(12, 12, 14, 0.95);
-  width: 220px;
-  padding: 12px;
+  width: vp(220);
+  padding: vp(12);
   flex-direction: column;
-  min-width: 200px;
+  min-width: vp(200);
   color: $textColor;
   font-family: $mainFont;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  border-radius: vp(10);
+  border: vp(1) solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 vp(10) vp(40) rgba(0, 0, 0, 0.5);
   p {
-    font-size: 12px;
+    font-size: vp(12);
     font-weight: 400;
   }
 }
@@ -912,18 +920,18 @@ button:active {
   justify-content: space-between;
   align-items: center;
   p {
-    font-size: 14px;
+    font-size: vp(14);
     font-weight: 600;
   }
 }
 
 .tooltip-weight {
-  font-size: 12px;
+  font-size: vp(12);
   font-weight: 500;
   color: $textColorMuted;
   background: rgba(255, 255, 255, 0.05);
-  padding: 2px 8px;
-  border-radius: 4px;
+  padding: vp(2) vp(8);
+  border-radius: vp(4);
 }
 
 .tooltip-crafting-duration {
@@ -932,15 +940,15 @@ button:active {
   align-items: center;
   justify-content: center;
   svg {
-    padding-right: 3px;
+    padding-right: vp(3);
   }
   p {
-    font-size: 13px;
+    font-size: vp(13);
   }
 }
 
 .tooltip-ingredients {
-  padding-top: 8px;
+  padding-top: vp(8);
 }
 
 .tooltip-ingredient {
@@ -948,9 +956,9 @@ button:active {
   flex-direction: row;
   align-items: center;
   img {
-    width: 28px;
-    height: 28px;
-    padding-right: 5px;
+    width: vp(28);
+    height: vp(28);
+    padding-right: vp(5);
   }
 }
 
@@ -958,7 +966,7 @@ button:active {
   position: fixed;
   bottom: 4vh;
   left: 50%;
-  transform: translateX(-50%) translateY(20px);
+  transform: translateX(-50%) translateY(vp(20));
   z-index: 1000;
   pointer-events: none;
   opacity: 0;
@@ -975,11 +983,11 @@ button:active {
   display: flex;
   align-items: center;
   gap: $gridGap;
-  padding: 16px;
+  padding: vp(16);
   background: $mainColor;
-  border: 1px solid $borderColorHover;
-  border-radius: 12px;
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6);
+  border: vp(1) solid $borderColorHover;
+  border-radius: vp(12);
+  box-shadow: 0 vp(15) vp(50) rgba(0, 0, 0, 0.6);
   position: relative;
   overflow: hidden;
 
@@ -989,10 +997,10 @@ button:active {
     inset: 0;
     pointer-events: none;
     z-index: 0;
-    border-radius: 12px;
+    border-radius: vp(12);
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
     background-repeat: repeat;
-    background-size: 128px 128px;
+    background-size: vp(128) vp(128);
     opacity: 0.08;
   }
 }
@@ -1002,11 +1010,11 @@ button:active {
   width: $gridSize;
   height: $gridSize;
   background-color: $slotBackground;
-  border: 1px solid $borderColor;
-  border-radius: 8px;
+  border: vp(1) solid $borderColor;
+  border-radius: vp(8);
   transition: all 0.2s ease;
   overflow: hidden;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 vp(1) 0 rgba(255, 255, 255, 0.05);
 
   &:hover {
     background-color: $slotBackgroundHover;
@@ -1018,7 +1026,7 @@ button:active {
 
   &.hotbar-slot-empty {
     background-color: $slotBackgroundEmpty;
-    border: 1px dashed rgba(255, 255, 255, 0.08);
+    border: vp(1) dashed rgba(255, 255, 255, 0.08);
     box-shadow: none;
 
     &:hover {
@@ -1036,42 +1044,42 @@ button:active {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 8px;
+  padding: vp(8);
 }
 
 .hotbar-slot-noise {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  border-radius: 8px;
+  border-radius: vp(8);
   overflow: hidden;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 128 128' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-repeat: repeat;
-  background-size: 64px 64px;
+  background-size: vp(64) vp(64);
   opacity: 0.06;
   mix-blend-mode: overlay;
 }
 
 .hotbar-slot-number {
   position: absolute;
-  top: 4px;
-  left: 4px;
-  min-width: 18px;
-  height: 18px;
+  top: vp(4);
+  left: vp(4);
+  min-width: vp(18);
+  height: vp(18);
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: $accentColor;
   color: rgba(0, 0, 0, 0.9);
-  font-size: 10px;
+  font-size: vp(10);
   font-weight: 700;
-  border-radius: 4px;
+  border-radius: vp(4);
   z-index: 10;
 }
 
 .hotbar-slot-image {
-  width: 40px;
-  height: 40px;
+  width: vp(40);
+  height: vp(40);
   object-fit: contain;
   pointer-events: none;
   image-rendering: -webkit-optimize-contrast;
@@ -1081,31 +1089,31 @@ button:active {
 
 .hotbar-slot-count {
   position: absolute;
-  top: 4px;
-  right: 4px;
-  min-width: 18px;
-  height: 18px;
+  top: vp(4);
+  right: vp(4);
+  min-width: vp(18);
+  height: vp(18);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 4px;
+  padding: 0 vp(4);
   background: rgba(0, 0, 0, 0.5);
   color: white;
-  font-size: 10px;
+  font-size: vp(10);
   font-weight: 700;
-  border-radius: 4px;
+  border-radius: vp(4);
   z-index: 10;
 }
 
 .hotbar-slot-label {
   position: relative;
   color: rgba(209, 213, 219, 1);
-  font-size: 9px;
+  font-size: vp(9);
   font-weight: 400;
   text-align: center;
   line-height: 1.2;
-  margin-top: 4px;
-  padding: 0 4px;
+  margin-top: vp(4);
+  padding: 0 vp(4);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1116,9 +1124,9 @@ button:active {
 
 .hotbar-slot-durability {
   position: absolute;
-  bottom: 4px;
-  left: 4px;
-  right: 4px;
+  bottom: vp(4);
+  left: vp(4);
+  right: vp(4);
   z-index: 10;
 }
 
@@ -1134,9 +1142,9 @@ button:active {
 }
 
 .hotbar-empty-icon-bg {
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
+  width: vp(32);
+  height: vp(32);
+  border-radius: vp(6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1145,8 +1153,8 @@ button:active {
 }
 
 .hotbar-empty-icon {
-  width: 16px;
-  height: 16px;
+  width: vp(16);
+  height: vp(16);
   color: rgba(255, 255, 255, 0.1);
   transition: all 0.2s ease;
 }
@@ -1165,7 +1173,7 @@ button:active {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 12px;
+  gap: vp(12);
   position: fixed;
   bottom: 8vh;
   left: 50%;
@@ -1178,12 +1186,12 @@ button:active {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 12px 16px;
+  padding: vp(12) vp(16);
   background: $mainColor;
-  border: 1px solid $borderColorHover;
-  border-radius: 12px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-  min-width: 100px;
+  border: vp(1) solid $borderColorHover;
+  border-radius: vp(12);
+  box-shadow: 0 vp(10) vp(40) rgba(0, 0, 0, 0.5);
+  min-width: vp(100);
   animation: notificationSlideUp 0.3s ease-out;
   position: relative;
 
@@ -1193,11 +1201,11 @@ button:active {
     inset: 0;
     pointer-events: none;
     z-index: 0;
-    border-radius: 12px;
+    border-radius: vp(12);
     overflow: hidden;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
     background-repeat: repeat;
-    background-size: 128px 128px;
+    background-size: vp(128) vp(128);
     opacity: 0.08;
     mix-blend-mode: overlay;
   }
@@ -1206,7 +1214,7 @@ button:active {
 @keyframes notificationSlideUp {
   from {
     opacity: 0;
-    transform: translateY(20px) scale(0.9);
+    transform: translateY(vp(20)) scale(0.9);
   }
   to {
     opacity: 1;
@@ -1216,17 +1224,17 @@ button:active {
 
 .item-notification-action {
   position: absolute;
-  top: -8px;
+  top: vp(-8);
   left: 50%;
   transform: translateX(-50%);
   background: $accentColor;
   color: rgba(0, 0, 0, 0.9);
-  font-size: 9px;
+  font-size: vp(9);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  padding: 3px 10px;
-  border-radius: 10px;
+  letter-spacing: vp(0.5);
+  padding: vp(3) vp(10);
+  border-radius: vp(10);
   white-space: nowrap;
   z-index: 10;
 }
@@ -1235,49 +1243,49 @@ button:active {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
-  margin-top: 8px;
+  width: vp(48);
+  height: vp(48);
+  margin-top: vp(8);
   position: relative;
   z-index: 1;
 }
 
 .item-notification-image {
-  width: 40px;
-  height: 40px;
+  width: vp(40);
+  height: vp(40);
   object-fit: contain;
   image-rendering: -webkit-optimize-contrast;
 }
 
 .item-notification-label {
-  margin-top: 6px;
+  margin-top: vp(6);
   color: rgba(209, 213, 219, 1);
-  font-size: 9px;
+  font-size: vp(9);
   font-weight: 400;
   text-align: center;
   line-height: 1.2;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 120px;
+  max-width: vp(120);
   position: relative;
   z-index: 1;
 }
 
 .durability-bar {
   background: rgba(0, 0, 0, 0.4);
-  height: 3px;
+  height: vp(3);
   overflow: hidden;
-  border-radius: 0 0 7px 7px;
+  border-radius: 0 0 vp(7) vp(7);
 }
 
 .weight-bar {
   background: rgba(0, 0, 0, 0.3);
   border: none;
-  height: 6px;
-  border-radius: 3px;
+  height: vp(6);
+  border-radius: vp(3);
   overflow: hidden;
-  margin: 0 16px 0 16px;
+  margin: 0 vp(16) 0 vp(16);
 }
 
 .drop-zone {
@@ -1286,19 +1294,19 @@ button:active {
 
 .drop-zone-active {
   border-color: $accentColorFaded !important;
-  box-shadow: 0 0 20px rgba(74, 222, 128, 0.2), inset 0 0 30px rgba(74, 222, 128, 0.05);
+  box-shadow: 0 0 vp(20) rgba(74, 222, 128, 0.2), inset 0 0 vp(30) rgba(74, 222, 128, 0.05);
 }
 
 .drop-zone-hover {
   border-color: rgba(74, 222, 128, 0.8) !important;
-  box-shadow: 0 0 30px rgba(74, 222, 128, 0.3), inset 0 0 40px rgba(74, 222, 128, 0.1);
+  box-shadow: 0 0 vp(30) rgba(74, 222, 128, 0.3), inset 0 0 vp(40) rgba(74, 222, 128, 0.1);
   background: rgba(74, 222, 128, 0.05) !important;
 }
 
 @keyframes slideIn {
   from {
     opacity: 0;
-    transform: rotateY(-3deg) translateX(30px);
+    transform: rotateY(-3deg) translateX(vp(30));
   }
   to {
     opacity: 1;
@@ -1309,7 +1317,7 @@ button:active {
 @keyframes slideInLeft {
   from {
     opacity: 0;
-    transform: rotateY(3deg) translateX(-30px);
+    transform: rotateY(3deg) translateX(vp(-30));
   }
   to {
     opacity: 1;
@@ -1329,7 +1337,7 @@ button:active {
 @keyframes slideInUp {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(vp(10));
   }
   to {
     opacity: 1;
@@ -1373,13 +1381,13 @@ button:active {
 
 @keyframes dropPulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6), inset 0 0 30px rgba(74, 222, 128, 0.1);
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6), inset 0 0 vp(30) rgba(74, 222, 128, 0.1);
   }
   50% {
-    box-shadow: 0 0 30px 10px rgba(74, 222, 128, 0.3), inset 0 0 50px rgba(74, 222, 128, 0.15);
+    box-shadow: 0 0 vp(30) vp(10) rgba(74, 222, 128, 0.3), inset 0 0 vp(50) rgba(74, 222, 128, 0.15);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0), inset 0 0 30px rgba(74, 222, 128, 0);
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0), inset 0 0 vp(30) rgba(74, 222, 128, 0);
   }
 }
 
@@ -1430,27 +1438,27 @@ button:active {
 }
 
 .transition-slide-up-enter {
-  transform: translateY(200px);
+  transform: translateY(vp(200));
 }
 
 .transition-slide-up-enter-active {
-  transform: translateY(0px);
+  transform: translateY(0);
   transition: all 200ms;
 }
 
 .transition-slide-up-exit {
-  transform: translateY(0px);
+  transform: translateY(0);
 }
 
 .transition-slide-up-exit-active {
-  transform: translateY(200px);
+  transform: translateY(vp(200));
   transition: all 200ms;
 }
 
 .drop-ripple {
   position: absolute;
-  width: 60px;
-  height: 60px;
+  width: vp(60);
+  height: vp(60);
   border-radius: 50%;
   background: radial-gradient(circle, rgba(74, 222, 128, 0.4) 0%, rgba(74, 222, 128, 0) 70%);
   pointer-events: none;
