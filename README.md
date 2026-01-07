@@ -33,6 +33,7 @@ Advanced Crafting (Encrypted): https://fivem.samueldev.shop/product/7203650
 - **Durability bars** - Color-gradient durability indicators on items
 - **Modern tooltips** - Redesigned item tooltips with better formatting
 - **Item notifications** - Styled popup notifications for item actions (use, give, receive)
+- **Scales with Resolution** - The inventory will always look great regardless of resolution!
 
 > **⚠️ Important:** Download the `ox_inventory.zip` from releases, **not** the source code. The source code does not include the pre-built UI files required for the resource to work.
 
