@@ -5,6 +5,7 @@ import { getTotalWeight } from '../../helpers';
 import { useAppSelector } from '../../store';
 import { useIntersection } from '../../hooks/useIntersection';
 import { Items } from '../../store/items';
+import { Locale } from '../../store/locale';
 import { fetchNui } from '../../utils/fetchNui';
 
 const PAGE_SIZE = 30;
@@ -155,7 +156,7 @@ const InventoryGrid: React.FC<{ inventory: Inventory }> = ({ inventory }) => {
         <div className="inventory-search-container">
           <input
             type="text"
-            placeholder="Search items..."
+            placeholder={Locale.ui_search_items || 'Search items...'}
             value={searchTerm}
             onChange={handleSearchChange}
             onClick={(e) => {
