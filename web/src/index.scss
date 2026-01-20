@@ -1,23 +1,65 @@
-@use "sass:math";
+@use 'sass:math';
+
+$razzleDazzleRose: (
+  50: #fff3fc,
+  100: #ffe6fa,
+  200: #ffccf4,
+  300: #ffa3e9,
+  400: #ff6dda,
+  500: #ff4fd8,
+  600: #e316b1,
+  700: #bd0e8f,
+  800: #9a0e74,
+  900: #7e115e,
+  950: #55003c,
+);
+
+$electricViolet: (
+  50: #f9f5ff,
+  100: #f0e7ff,
+  200: #e4d3ff,
+  300: #cfb0ff,
+  400: #b17eff,
+  500: #8b3eff,
+  600: #7c2af3,
+  700: #6a1ad6,
+  800: #5b1aaf,
+  900: #4c178c,
+  950: #300269,
+);
+$neonCarrot: (
+  50: #fff8ed,
+  100: #ffeed4,
+  200: #ffdaa8,
+  300: #ffbf71,
+  400: #ff9a3c,
+  500: #fe7a11,
+  600: #ef5e07,
+  700: #c64508,
+  800: #9d380f,
+  900: #7e2f10,
+  950: #441506,
+);
 
 $mainColor: rgba(12, 12, 14, 0.75);
-$textColor: #ffffff;
-$textColorSecondary: rgba(255, 255, 255, 0.7);
-$textColorMuted: rgba(255, 255, 255, 0.5);
-$mainFont: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+$textColor: map-get($razzleDazzleRose, 50);
+$textColorSecondary: rgba(map-get($razzleDazzleRose, 100), 0.82);
+$textColorMuted: rgba(map-get($razzleDazzleRose, 100), 0.55);
+$mainFont: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
 
 $slotBackground: #1a1a1f;
 $slotBackgroundHover: #2a2a30;
 $slotBackgroundEmpty: rgba(26, 26, 31, 0.4);
-$borderColor: rgba(255, 255, 255, 0.08);
-$borderColorHover: rgba(255, 255, 255, 0.15);
-$accentColor: rgba(74, 222, 128, 1);
-$accentColorFaded: rgba(74, 222, 128, 0.5);
+$borderColor: rgba(map-get($razzleDazzleRose, 300), 0.2);
+$borderColorHover: rgba(map-get($razzleDazzleRose, 300), 0.38);
+$accentColor: rgba(map-get($razzleDazzleRose, 300), 0.55);
+$accentColorFaded: rgba(map-get($razzleDazzleRose, 500), 0.55);
 
-$secondaryColor: rgba(26, 26, 31, 0.5);
-$secondaryColorHighlight: rgba(42, 42, 48, 0.6);
-$secondaryColorLight: rgba(255, 255, 255, 0.05);
-$secondaryColorDark: rgba(18, 18, 22, 0.9);
+$secondaryColor: rgba(map-get($razzleDazzleRose, 900), 0.6);
+$secondaryColorHighlight: rgba(map-get($razzleDazzleRose, 500), 0.55);
+$secondaryColorLight: rgba(map-get($razzleDazzleRose, 200), 0.14);
+$secondaryColorDark: rgba(map-get($razzleDazzleRose, 950), 0.9);
 
 @function vp($px) {
   $vw-component: calc(#{math.div($px, 1920) * 100}vw);
@@ -27,8 +69,8 @@ $secondaryColorDark: rgba(18, 18, 22, 0.9);
 
 $gridCols: 5;
 $gridRows: 5;
-$gridSize: vp(80);
-$gridGap: vp(8);
+$gridSize: vp(90);
+$gridGap: vp(10);
 
 body {
   margin: 0;
@@ -60,18 +102,18 @@ code {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(map-get($razzleDazzleRose, 300), 0.55);
   border-radius: vp(4);
   transition: background 0.2s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(map-get($razzleDazzleRose, 300), 0.55);
 }
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.05);
+  scrollbar-color: rgba(map-get($razzleDazzleRose, 300), 0.55) rgba(255, 255, 255, 0.05);
 }
 
 p {
@@ -99,7 +141,7 @@ input[type='number']::-webkit-outer-spin-button {
   color: $textColor;
   padding: vp(4);
   border: vp(1) solid $borderColor;
-  border-radius: vp(8);
+  border-radius: vp(5);
   outline: none;
   display: flex;
   flex-direction: column;
@@ -121,7 +163,7 @@ input[type='number']::-webkit-outer-spin-button {
     transform: none;
   }
   &:hover {
-    background-color: rgba(74, 222, 128, 0.15);
+    background-color: rgba(map-get($razzleDazzleRose, 300), 0.55);
     cursor: pointer;
   }
 }
@@ -226,7 +268,7 @@ button:active {
     font-size: vp(11);
     text-align: center;
     outline: none;
-    border: vp(1) solid rgba(255, 255, 255, 0.1);
+    border: vp(1) solid rgba(map-get($razzleDazzleRose, 300), 0.2);
     border-right: none;
     color: #fff;
     background-color: rgba(0, 0, 0, 0.3);
@@ -253,7 +295,7 @@ button:active {
   .inventory-control-arrows {
     display: flex;
     flex-direction: column;
-    border: vp(1) solid rgba(255, 255, 255, 0.1);
+    border: vp(1) solid rgba(map-get($razzleDazzleRose, 300), 0.2);
     border-left: none;
     border-radius: 0 vp(4) vp(4) 0;
     overflow: hidden;
@@ -277,12 +319,12 @@ button:active {
     }
 
     &:hover {
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: rgba(255, 255, 255, 0.08);
       color: $textColor;
     }
 
     &.arrow-down {
-      border-top: vp(1) solid rgba(255, 255, 255, 0.08);
+      border-top: vp(1) solid rgba(map-get($razzleDazzleRose, 300), 0.2);
     }
   }
 
@@ -293,7 +335,7 @@ button:active {
     transition: all 0.2s ease;
     padding: vp(7) vp(14);
     border-radius: vp(4);
-    border: vp(1) solid rgba(255, 255, 255, 0.08);
+    border: vp(1) solid rgba(map-get($razzleDazzleRose, 300), 0.2);
     text-transform: uppercase;
     font-family: $mainFont;
     font-weight: 600;
@@ -313,38 +355,38 @@ button:active {
     }
 
     &:nth-of-type(1) {
-      color: rgba(74, 222, 128, 0.8);
-      border-color: rgba(74, 222, 128, 0.2);
-      background-color: rgba(74, 222, 128, 0.08);
+      color: rgba(map-get($razzleDazzleRose, 300), 0.8);
+      border-color: rgba(map-get($razzleDazzleRose, 300), 0.2);
+      background-color: rgba(map-get($razzleDazzleRose, 300), 0.08);
 
       &:hover {
-        background-color: rgba(74, 222, 128, 0.15);
-        border-color: rgba(74, 222, 128, 0.4);
+        background-color: rgba(map-get($razzleDazzleRose, 300), 0.15);
+        border-color: rgba(map-get($razzleDazzleRose, 300), 0.4);
         color: $accentColor;
       }
     }
 
     &:nth-of-type(2) {
-      color: rgba(96, 165, 250, 0.8);
-      border-color: rgba(96, 165, 250, 0.2);
-      background-color: rgba(96, 165, 250, 0.08);
+      color: rgba(map-get($electricViolet, 400), 0.8);
+      border-color: rgba(map-get($electricViolet, 400), 0.2);
+      background-color: rgba(map-get($electricViolet, 400), 0.08);
 
       &:hover {
-        background-color: rgba(96, 165, 250, 0.15);
-        border-color: rgba(96, 165, 250, 0.4);
-        color: rgba(96, 165, 250, 1);
+        background-color: rgba(map-get($electricViolet, 400), 0.15);
+        border-color: rgba(map-get($electricViolet, 400), 0.4);
+        color: rgba(map-get($electricViolet, 400), 1);
       }
     }
 
     &:nth-of-type(3) {
-      color: rgba(248, 113, 113, 0.8);
-      border-color: rgba(248, 113, 113, 0.2);
-      background-color: rgba(248, 113, 113, 0.08);
+      color: rgba(map-get($neonCarrot, 500), 0.8);
+      border-color: rgba(map-get($neonCarrot, 500), 0.2);
+      background-color: rgba(map-get($neonCarrot, 500), 0.08);
 
       &:hover {
-        background-color: rgba(248, 113, 113, 0.15);
-        border-color: rgba(248, 113, 113, 0.4);
-        color: rgba(248, 113, 113, 1);
+        background-color: rgba(map-get($neonCarrot, 500), 0.15);
+        border-color: rgba(map-get($neonCarrot, 500), 0.4);
+        color: rgba(map-get($neonCarrot, 500), 1);
       }
     }
   }
@@ -371,9 +413,7 @@ button:active {
   border-radius: vp(16);
   gap: vp(20);
   border: vp(1) solid rgba(255, 255, 255, 0.1);
-  box-shadow:
-    0 vp(25) vp(50) rgba(0, 0, 0, 0.5),
-    0 0 0 vp(1) rgba(255, 255, 255, 0.05) inset;
+  box-shadow: 0 vp(25) vp(50) rgba(0, 0, 0, 0.5), 0 0 0 vp(1) rgba(255, 255, 255, 0.05) inset;
 }
 
 .useful-controls-dialog-title {
@@ -411,7 +451,7 @@ button:active {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: vp(8);
+  border-radius: vp(5);
   fill: $textColorMuted;
   transition: all 0.2s ease;
   background: rgba(255, 255, 255, 0.05);
@@ -434,7 +474,7 @@ button:active {
     gap: vp(6);
     padding: vp(12) vp(14);
     background: rgba(255, 255, 255, 0.03);
-    border-radius: vp(10);
+    border-radius: vp(5);
     border: vp(1) solid rgba(255, 255, 255, 0.05);
     font-size: vp(13);
     color: $textColorSecondary;
@@ -599,7 +639,7 @@ button:active {
   width: 100%;
   box-sizing: border-box;
   background-color: #1a1a1f;
-  border-radius: vp(8);
+  border-radius: vp(5);
   padding: vp(8) vp(40) vp(8) vp(16);
   color: $textColor;
   font-size: vp(12);
@@ -639,7 +679,7 @@ button:active {
   border: none;
   padding: vp(2);
   border-radius: vp(4);
-  color: rgba(156, 163, 175, 1);
+  color: rgba(map-get($razzleDazzleRose, 50), 1);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -671,21 +711,20 @@ button:active {
 
 .inventory-slot {
   background-color: $slotBackground;
-  border-radius: vp(8);
+  border-radius: vp(5);
   position: relative;
   color: $textColor;
   border: vp(1) solid $borderColor;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   cursor: default;
   overflow: hidden;
-  height: 100%;
+  height: vp(90);
   box-shadow: inset 0 vp(1) 0 rgba(255, 255, 255, 0.05);
 
   &:hover {
     background-color: $slotBackgroundHover;
     border-color: $borderColorHover;
-    transform: scale(1.05);
-    filter: brightness(1.1);
+    box-shadow: inset 0 vp(1) 0 rgba(255, 255, 255, 0.08), 0 vp(6) vp(12) rgba(0, 0, 0, 0.35);
     z-index: 10;
   }
 }
@@ -747,14 +786,14 @@ button:active {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: vp(8);
+  padding: vp(6);
 }
 
 .inventory-slot-noise {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  border-radius: vp(8);
+  border-radius: vp(5);
   overflow: hidden;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 128 128' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-repeat: repeat;
@@ -777,7 +816,7 @@ button:active {
   position: absolute;
   top: vp(4);
   right: vp(4);
-  min-width: vp(18);
+  min-width: vp(12);
   height: vp(18);
   display: flex;
   align-items: center;
@@ -794,11 +833,11 @@ button:active {
 .inventory-slot-label {
   position: relative;
   color: rgba(209, 213, 219, 1);
-  font-size: vp(9);
-  font-weight: 400;
+  font-size: vp(11);
+  font-weight: 700;
   text-align: center;
   line-height: 1.2;
-  margin-top: vp(4);
+  margin-top: vp(10);
   padding: 0 vp(4);
   white-space: nowrap;
   overflow: hidden;
@@ -848,7 +887,7 @@ button:active {
   align-items: center;
   justify-content: center;
   background-color: $accentColor;
-  color: rgba(0, 0, 0, 0.9);
+  color: rgba(20, 20, 20, 1);
   font-size: vp(10);
   font-weight: 700;
   border-radius: vp(4);
@@ -906,7 +945,7 @@ button:active {
   min-width: vp(200);
   color: $textColor;
   font-family: $mainFont;
-  border-radius: vp(10);
+  border-radius: vp(5);
   border: vp(1) solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 vp(10) vp(40) rgba(0, 0, 0, 0.5);
   p {
@@ -1012,7 +1051,7 @@ button:active {
   height: $gridSize;
   background-color: $slotBackground;
   border: vp(1) solid $borderColor;
-  border-radius: vp(8);
+  border-radius: vp(5);
   transition: all 0.2s ease;
   overflow: hidden;
   box-shadow: inset 0 vp(1) 0 rgba(255, 255, 255, 0.05);
@@ -1052,7 +1091,7 @@ button:active {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  border-radius: vp(8);
+  border-radius: vp(5);
   overflow: hidden;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 128 128' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-repeat: repeat;
@@ -1097,7 +1136,7 @@ button:active {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 vp(4);
+  padding: 0 vp(1);
   background: rgba(0, 0, 0, 0.5);
   color: white;
   font-size: vp(10);
@@ -1235,7 +1274,7 @@ button:active {
   text-transform: uppercase;
   letter-spacing: vp(0.5);
   padding: vp(3) vp(10);
-  border-radius: vp(10);
+  border-radius: vp(5);
   white-space: nowrap;
   z-index: 10;
 }
