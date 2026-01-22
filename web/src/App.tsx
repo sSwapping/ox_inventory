@@ -20,7 +20,7 @@ debugData([
       leftInventory: {
         id: 'test',
         type: 'player',
-        slots: 50,
+        slots: 52,
         label: 'Bob Smith',
         weight: 3000,
         maxWeight: 5000,
@@ -134,7 +134,6 @@ const App: React.FC = () => {
     const handleClick = (e: MouseEvent) => {
       const screenMidpoint = window.innerWidth / 2;
       if (e.clientX > screenMidpoint) {
-        // Click was on the right side - transfer focus to sd-crafting
         fetchNui('transferFocusToCrafting', {});
       }
     };
@@ -144,7 +143,7 @@ const App: React.FC = () => {
   }, [noBackdrop]);
 
   return (
-    <div className={`app-wrapper${noBackdrop ? ' no-backdrop-mode' : ''}`}>
+    <div className={`app-wrapper ${noBackdrop ? 'no-backdrop-mode' : ''}`}>
       <InventoryComponent />
       <DragPreview />
       <KeyPress />
@@ -152,8 +151,8 @@ const App: React.FC = () => {
   );
 };
 
-addEventListener("dragstart", function(event) {
-  event.preventDefault()
-})
+addEventListener('dragstart', function (event) {
+  event.preventDefault();
+});
 
 export default App;

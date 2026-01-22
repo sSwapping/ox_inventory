@@ -111,8 +111,7 @@ const InventoryGrid: React.FC<{ inventory: Inventory }> = ({ inventory }) => {
       const itemLabel = item.metadata?.label || Items[item.name]?.label || item.name;
 
       const matchesSearch =
-        item.name.toLowerCase().includes(lowerSearch) ||
-        itemLabel.toLowerCase().includes(lowerSearch);
+        item.name.toLowerCase().includes(lowerSearch) || itemLabel.toLowerCase().includes(lowerSearch);
 
       // If doesn't match, return empty slot placeholder
       if (!matchesSearch) {
@@ -124,10 +123,7 @@ const InventoryGrid: React.FC<{ inventory: Inventory }> = ({ inventory }) => {
   }, [inventory.items, searchTerm]);
 
   // Count actual items (non-empty slots)
-  const itemCount = useMemo(
-    () => inventory.items.filter((item) => item.name).length,
-    [inventory.items]
-  );
+  const itemCount = useMemo(() => inventory.items.filter((item) => item.name).length, [inventory.items]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -146,7 +142,9 @@ const InventoryGrid: React.FC<{ inventory: Inventory }> = ({ inventory }) => {
         {inventory.maxWeight !== undefined && inventory.maxWeight > 0 && (
           <div className={`inventory-weight-display ${getWeightColorClass(weightPercent)}`}>
             <WeightIcon />
-            <span>{formatWeight(weight)}/{formatWeight(inventory.maxWeight)}</span>
+            <span>
+              {formatWeight(weight)}/{formatWeight(inventory.maxWeight)}
+            </span>
           </div>
         )}
       </div>
@@ -190,16 +188,19 @@ const InventoryGrid: React.FC<{ inventory: Inventory }> = ({ inventory }) => {
 
       {/* Grid Container */}
       <div className="inventory-grid-container" ref={containerRef}>
-        {filteredItems.slice(0, (page + 1) * PAGE_SIZE).map((item, index) => (
-          <InventorySlot
-            key={`${inventory.type}-${inventory.id}-${item.slot}`}
-            item={item}
-            ref={index === (page + 1) * PAGE_SIZE - 1 ? ref : null}
-            inventoryType={inventory.type}
-            inventoryGroups={inventory.groups}
-            inventoryId={inventory.id}
-          />
-        ))}
+        {filteredItems
+          .filter((item) => item.slot !== 51 && item.slot !== 52)
+          .slice(0, (page + 1) * PAGE_SIZE)
+          .map((item, index) => (
+            <InventorySlot
+              key={`${inventory.type}-${inventory.id}-${item.slot}`}
+              item={item}
+              ref={index === (page + 1) * PAGE_SIZE - 1 ? ref : null}
+              inventoryType={inventory.type}
+              inventoryGroups={inventory.groups}
+              inventoryId={inventory.id}
+            />
+          ))}
       </div>
     </div>
   );
