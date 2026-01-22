@@ -134,7 +134,7 @@ const InventorySlot: React.ForwardRefRenderFunction<HTMLDivElement, SlotProps> =
       ref={refs}
       onContextMenu={handleContext}
       onClick={handleClick}
-      className={`inventory-slot ${isEmpty ? 'inventory-slot-empty' : ''}`}
+      className={`inventory-slot ${isEmpty ? 'inventory-slot-empty' : `rarity-${item.rarity}`}`}
       style={{
         filter:
           !isEmpty &&

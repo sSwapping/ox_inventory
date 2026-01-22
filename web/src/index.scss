@@ -61,6 +61,12 @@ $secondaryColorHighlight: rgba(map-get($razzleDazzleRose, 500), 0.55);
 $secondaryColorLight: rgba(map-get($razzleDazzleRose, 200), 0.14);
 $secondaryColorDark: rgba(map-get($razzleDazzleRose, 950), 0.9);
 
+$rarityCommon: #9ca3af;
+$rarityUncommon: #4ade80;
+$rarityRare: #3b82f6;
+$rarityEpic: #a855f7;
+$rarityLegendary: #f59e0b;
+
 @function vp($px) {
   $vw-component: calc(#{math.div($px, 1920) * 100}vw);
   $vh-component: calc(#{math.div($px, 1080) * 100}vh);
@@ -821,6 +827,33 @@ button:active {
     box-shadow: inset 0 vp(1) 0 rgba(255, 255, 255, 0.08), 0 vp(6) vp(12) rgba(0, 0, 0, 0.35);
     z-index: 10;
   }
+
+  &.rarity-common {
+    border-color: $rarityCommon;
+    background: radial-gradient(circle at center, rgba($rarityCommon, 0.15), rgba($rarityCommon, 0.05));
+    border-color: rgba($rarityCommon, 0.5);
+    box-shadow: 0 0 vp(15) rgba($rarityCommon, 0.1);
+  }
+  &.rarity-uncommon {
+    background: radial-gradient(circle at center, rgba($rarityUncommon, 0.15), rgba($rarityUncommon, 0.05));
+    border-color: rgba($rarityUncommon, 0.5);
+    box-shadow: 0 0 vp(15) rgba($rarityUncommon, 0.1);
+  }
+  &.rarity-rare {
+    background: radial-gradient(circle at center, rgba($rarityRare, 0.15), rgba($rarityRare, 0.05));
+    border-color: rgba($rarityRare, 0.5);
+    box-shadow: 0 0 vp(15) rgba($rarityRare, 0.1);
+  }
+  &.rarity-epic {
+    background: radial-gradient(circle at center, rgba($rarityEpic, 0.15), rgba($rarityEpic, 0.05));
+    border-color: rgba($rarityEpic, 0.5);
+    box-shadow: 0 0 vp(15) rgba($rarityEpic, 0.1);
+  }
+  &.rarity-legendary {
+    background: radial-gradient(circle at center, rgba($rarityLegendary, 0.15), rgba($rarityLegendary, 0.05));
+    border-color: rgba($rarityLegendary, 0.5);
+    box-shadow: 0 0 vp(15) rgba($rarityLegendary, 0.1);
+  }
 }
 
 .inventory-slot-empty {
@@ -1052,9 +1085,24 @@ button:active {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
   p {
     font-size: vp(14);
     font-weight: 600;
+  }
+}
+
+.tooltip-title-group {
+  display: flex;
+  align-items: center;
+  gap: vp(6);
+  min-width: 0;
+
+  p {
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
@@ -1093,6 +1141,48 @@ button:active {
     height: vp(28);
     padding-right: vp(5);
   }
+}
+
+.tooltip-rarity-label {
+  margin-left: 0;
+  padding: vp(2) vp(8);
+  border-radius: vp(3);
+  font-size: vp(8);
+  font-weight: 700;
+  letter-spacing: vp(0.5);
+  text-transform: uppercase;
+  border: vp(1) solid transparent;
+  color: $textColor;
+}
+
+.tooltip-rarity-label.rarity-common {
+  border-color: rgba(134, 140, 150, 0.6);
+  background: rgba(134, 140, 150, 0.08);
+  color: #9ca3af;
+}
+
+.tooltip-rarity-label.rarity-uncommon {
+  border-color: rgba(49, 143, 57, 0.6);
+  background: rgba(49, 143, 57, 0.08);
+  color: #4ade80;
+}
+
+.tooltip-rarity-label.rarity-rare {
+  border-color: rgba(59, 130, 246, 0.6);
+  background: rgba(59, 130, 246, 0.08);
+  color: #3b82f6;
+}
+
+.tooltip-rarity-label.rarity-epic {
+  border-color: rgba(168, 85, 247, 0.6);
+  background: rgba(168, 85, 247, 0.08);
+  color: #a855f7;
+}
+
+.tooltip-rarity-label.rarity-legendary {
+  border-color: rgba(245, 158, 11, 0.7);
+  background: rgba(245, 158, 11, 0.08);
+  color: #f59e0b;
 }
 
 .hotbar-wrapper {

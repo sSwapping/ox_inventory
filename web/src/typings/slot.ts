@@ -3,6 +3,7 @@ export type Slot = {
   name?: string;
   count?: number;
   weight?: number;
+  rarity?: string;
   metadata?: {
     [key: string]: any;
   };

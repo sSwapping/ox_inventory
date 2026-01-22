@@ -28,19 +28,28 @@ const SlotTooltip: React.ForwardRefRenderFunction<
   const description = item.metadata?.description || itemData?.description;
   const ammoName = itemData?.ammoName && Items[itemData?.ammoName]?.label;
 
+  const rarity = typeof item.rarity === 'string' ? item.rarity : undefined;
+  const rarityLabel = rarity ? rarity.replace(/_/g, ' ').toUpperCase() : undefined;
+
   return (
     <>
       {!itemData ? (
         <div className="tooltip-wrapper" ref={ref} style={style}>
           <div className="tooltip-header-wrapper">
-            <p>{item.name}</p>
+            <div className="tooltip-title-group">
+              <p>{item.name}</p>
+              {rarity && <span className={`tooltip-rarity-label rarity-${rarity}`}>{rarityLabel}</span>}
+            </div>
           </div>
           <Divider />
         </div>
       ) : (
         <div style={{ ...style }} className="tooltip-wrapper" ref={ref}>
           <div className="tooltip-header-wrapper">
-            <p>{item.metadata?.label || itemData.label || item.name}</p>
+            <div className="tooltip-title-group">
+              <p>{item.metadata?.label || itemData.label || item.name}</p>
+              {rarity && <span className={`tooltip-rarity-label rarity-${rarity}`}>{rarityLabel}</span>}
+            </div>
             {inventoryType === 'crafting' ? (
               <div className="tooltip-crafting-duration">
                 <ClockIcon />
