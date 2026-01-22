@@ -143,8 +143,8 @@ const InventorySlot: React.ForwardRefRenderFunction<HTMLDivElement, SlotProps> =
             ? 'brightness(80%) grayscale(100%)'
             : undefined,
         opacity: isDragging ? 0.4 : 1.0,
-        border: isOver ? '1px dashed rgba(74, 222, 128, 0.5)' : '',
-        backgroundColor: isOver && isEmpty ? 'rgba(74, 222, 128, 0.1)' : undefined,
+        border: isOver ? '1px dashed rgba(255, 163, 233, 0.5)' : '',
+        backgroundColor: isOver && isEmpty ? 'rgba(255, 163, 233, 0.1)' : undefined,
       }}
     >
       {isEmpty && (
