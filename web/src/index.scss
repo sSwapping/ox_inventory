@@ -1207,25 +1207,9 @@ button:active {
   align-items: center;
   gap: $gridGap;
   padding: vp(16);
-  background: $mainColor;
-  border: vp(1) solid $borderColorHover;
   border-radius: vp(12);
-  box-shadow: 0 vp(15) vp(50) rgba(0, 0, 0, 0.6);
   position: relative;
   overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    border-radius: vp(12);
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-    background-repeat: repeat;
-    background-size: vp(128) vp(128);
-    opacity: 0.08;
-  }
 }
 
 .hotbar-slot {
@@ -1268,19 +1252,6 @@ button:active {
   align-items: center;
   justify-content: center;
   padding: vp(8);
-}
-
-.hotbar-slot-noise {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  border-radius: vp(5);
-  overflow: hidden;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 128 128' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: vp(64) vp(64);
-  opacity: 0.06;
-  mix-blend-mode: overlay;
 }
 
 .hotbar-slot-number {
@@ -1409,7 +1380,7 @@ button:active {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: vp(12) vp(16);
+  padding: vp(12) vp(12);
   background: $mainColor;
   border: vp(1) solid $borderColorHover;
   border-radius: vp(12);
@@ -1449,14 +1420,14 @@ button:active {
   position: absolute;
   top: vp(-8);
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-25%);
   background: $accentColor;
   color: rgba(0, 0, 0, 0.9);
   font-size: vp(9);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: vp(0.5);
-  padding: vp(3) vp(10);
+  padding: vp(3) vp(3);
   border-radius: vp(5);
   white-space: nowrap;
   z-index: 10;

@@ -26,22 +26,14 @@ const InventoryHotbar: React.FC = () => {
     <div className={`hotbar-wrapper ${hotbarVisible ? 'hotbar-visible' : ''}`}>
       <div className="hotbar-container">
         {items.map((item) => (
-          <div
-            className={`hotbar-slot ${isSlotWithItem(item) ? '' : 'hotbar-slot-empty'}`}
-            key={`hotbar-${item.slot}`}
-          >
+          <div className={`hotbar-slot ${isSlotWithItem(item) ? '':'hotbar-slot-empty'}`} key={`hotbar-${item.slot}`}>
             {isSlotWithItem(item) ? (
               <div className="hotbar-item-wrapper">
-                {/* Noise texture */}
-                <div className="hotbar-slot-noise" />
-
                 {/* Slot number - top left */}
                 <div className="hotbar-slot-number">{item.slot}</div>
 
                 {/* Count badge - top right */}
-                {item.count && item.count > 0 && (
-                  <div className="hotbar-slot-count">{item.count}</div>
-                )}
+                {item.count && item.count > 0 && <div className="hotbar-slot-count">{item.count}</div>}
 
                 {/* Item image */}
                 <img
@@ -68,12 +60,7 @@ const InventoryHotbar: React.FC = () => {
                 <div className="hotbar-slot-number">{item.slot}</div>
                 <div className="hotbar-empty-icon-wrapper">
                   <div className="hotbar-empty-icon-bg">
-                    <svg
-                      className="hotbar-empty-icon"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
+                    <svg className="hotbar-empty-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 4v16m8-8H4" />
                     </svg>
                   </div>
